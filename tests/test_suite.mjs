@@ -21,13 +21,21 @@ console.log("=================================================");
 console.log("TEST SUITE: GRAPHLAND 1.0 WITH KAPIL");
 console.log("=================================================\n");
 
-// TEST GROUP 1: CURRICULUM INTEGRITY (7 LEVELS)
-console.log(">> 1. Testing Curriculum & 7 Progressive Realms...");
+// TEST GROUP 1: CURRICULUM INTEGRITY (8 REALMS: LEVEL 0 TO 7)
+console.log(">> 1. Testing Curriculum & 8 Progressive Realms (Level 0 Jodhpur + Levels 1-7)...");
 assert(Array.isArray(GRAPH_LEVELS), "GRAPH_LEVELS is an array");
-assert(GRAPH_LEVELS.length === 7, `Expected exactly 7 levels, found ${GRAPH_LEVELS.length}`);
+assert(GRAPH_LEVELS.length === 8, `Expected exactly 8 realms (0 to 7), found ${GRAPH_LEVELS.length}`);
+
+// Test Level 0 specifically
+const level0 = GRAPH_LEVELS[0];
+assert(level0.id === 0, "Level 0 has ID 0");
+assert(level0.badgeName === "Blue City Explorer", "Level 0 badge is 'Blue City Explorer'");
+assert(level0.pnrPrefix === "GL0-JODHPUR", "Level 0 PNR prefix is 'GL0-JODHPUR'");
+assert(level0.title.includes("Jodhpur"), "Level 0 title highlights City of Jodhpur");
+assert(level0.subtitle.includes("JIET Group of Institutions"), "Level 0 connects JIET Group of Institutions");
 
 GRAPH_LEVELS.forEach((level, idx) => {
-  const lvlNum = idx + 1;
+  const lvlNum = idx; // 0, 1, ..., 7
   assert(level.id === lvlNum, `Level ${lvlNum} ID is correctly sequential`);
   assert(typeof level.title === "string" && level.title.length > 5, `Level ${lvlNum} has valid title: "${level.title}"`);
   assert(typeof level.badgeName === "string" && level.badgeName.length > 3, `Level ${lvlNum} has valid badge name: "${level.badgeName}"`);
@@ -41,11 +49,11 @@ GRAPH_LEVELS.forEach((level, idx) => {
   assert(level.oopsMoment && level.oopsMoment.title && level.oopsMoment.kapilInsight, `Level ${lvlNum} has Oops moment with Kapil's insight`);
   assert(level.aahaMoment && level.aahaMoment.title && level.aahaMoment.content, `Level ${lvlNum} has Aaha moment with eureka revelation`);
 
-  // Quad-Language Code Solutions
+  // Complexity & Code Solutions / Blueprints
   const langs = ["c", "cpp", "java", "python"];
   langs.forEach(lang => {
     const code = level.codeSolutions?.[lang];
-    assert(typeof code === "string" && code.length > 50, `Level ${lvlNum} has full ${lang.toUpperCase()} code implementation`);
+    assert(typeof code === "string" && code.length > 50, `Level ${lvlNum} has full ${lang.toUpperCase()} implementation/blueprint`);
   });
 
   // Mini-Game & Level Checkpoint Quiz

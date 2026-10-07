@@ -11,7 +11,8 @@
 ## 🎮 Highlights & Architecture
 
 - **Mentor Kapil**: Guided storyline with mentor dialogues, hints, "Oops!" traps, and "Aaha!" eureka epiphanies.
-- **7 Progressive Realms (Strict Level Progression)**:
+- **8 Progressive Realms (Starting from Level 0 in Jodhpur)**:
+  - 🏰 **Level 0**: The Blue City Expedition (Jodhpur) *(No-Coding Realm! Connecting JIET Group of Institutions with Mehrangarh Fort, Umaid Bhawan, Clock Tower, Jaswant Thada, Stepwell, Mandore & Kaylana Lake. Full intuitive coverage of all graph algorithms plus Time & Memory complexity breakdowns!)*
   - 🏛️ **Level 1**: Kingdom of Vertices & Edges *(Foundations, Adjacency Matrix vs List, Degrees & Handshaking Lemma)*
   - 🌲 **Level 2**: The Whispering Woods of Traversal *(BFS, DFS, Connected Components, Undirected Cycle Detection)*
   - ⚙️ **Level 3**: The Directed Citadel & Ancient Orders *(DAGs, Kahn's BFS Topo Sort, DFS 3-Coloring, Directed Cycle Detection)*

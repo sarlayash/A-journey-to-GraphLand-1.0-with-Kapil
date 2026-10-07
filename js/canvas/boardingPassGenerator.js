@@ -109,8 +109,8 @@ export function generateBoardingPassCanvas(learnerName = "ALGORITHM EXPLORER", p
   ctx.font = "bold 11px monospace";
   ctx.fillText("ORIGIN VERTEX", 75, 255);
   ctx.fillStyle = "#ffffff";
-  ctx.font = "bold 17px monospace";
-  ctx.fillText("V0 : NULL_ISLAND (BASE)", 75, 280);
+  ctx.font = "bold 15px monospace";
+  ctx.fillText("JIET GROUP OF INSTITUTIONS (JODHPUR)", 75, 280);
 
   ctx.fillStyle = "rgba(255, 255, 255, 0.55)";
   ctx.font = "bold 11px monospace";

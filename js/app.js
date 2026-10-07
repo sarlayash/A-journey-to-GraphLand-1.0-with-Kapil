@@ -11,7 +11,7 @@ class GraphLandApp {
   constructor() {
     this.levels = GRAPH_LEVELS;
     this.finalQuiz = FINAL_100_QUIZ;
-    this.currentLevelId = 1;
+    this.currentLevelId = 0;
     this.selectedLang = "python";
     this.visualizer = null;
 
@@ -31,8 +31,8 @@ class GraphLandApp {
       learnerName: "",
       boarded: false,
       initialPnr: "",
-      unlockedLevel: 1,
-      levelPnrs: {}, // { 1: "PNR-...", 2: "PNR-..." }
+      unlockedLevel: 0,
+      levelPnrs: {}, // { 0: "PNR-...", 1: "PNR-..." }
       completedLevels: [],
       examAttempts: 0,
       examLockedUntil: 0,
@@ -86,7 +86,7 @@ class GraphLandApp {
     if (nameEl) nameEl.textContent = this.state.learnerName || "CADET";
     const curPnr = this.state.levelPnrs[this.currentLevelId] || this.state.initialPnr || "NOT ISSUED";
     if (pnrEl) pnrEl.textContent = curPnr;
-    if (lvlEl) lvlEl.textContent = `LEVEL ${this.state.unlockedLevel} / 7`;
+    if (lvlEl) lvlEl.textContent = this.state.unlockedLevel === 0 ? "REALM 0 (JODHPUR)" : `LEVEL ${this.state.unlockedLevel} / 7`;
   }
 
   showScreen(screenId) {
@@ -120,7 +120,7 @@ class GraphLandApp {
         this.state.learnerName = name;
         this.state.boarded = true;
         this.state.initialPnr = this.generateRandomPNR("INIT");
-        this.state.levelPnrs[1] = this.generateRandomPNR("GL1-VERT");
+        this.state.levelPnrs[0] = this.generateRandomPNR("GL0-JODHPUR");
         this.saveState();
 
         this.renderHeaderStatus();
@@ -135,7 +135,7 @@ class GraphLandApp {
         soundEngine.playLevelUp();
         document.getElementById("modal-boarding-pass").classList.remove("open");
         this.showScreen("screen-level");
-        this.loadLevel(1);
+        this.loadLevel(0);
       });
     }
 
@@ -229,14 +229,14 @@ class GraphLandApp {
     // Final Exam Button
     const examBtn = document.createElement("button");
     examBtn.className = "level-nav-btn final-exam-nav-btn";
-    const allCompleted = this.state.completedLevels.length >= 7;
+    const allCompleted = [0, 1, 2, 3, 4, 5, 6, 7].every(id => this.state.completedLevels.includes(id));
 
     if (!allCompleted) {
       examBtn.classList.add("locked");
       examBtn.innerHTML = `<span>🔒 Grand Final Exam (100 MCQs)</span>`;
       examBtn.addEventListener("click", () => {
         soundEngine.playOops();
-        alert("The Grand Final Exam is locked! You must complete all 7 realms to unlock the 100 MCQs Certification Exam.");
+        alert("The Grand Final Exam is locked! You must complete all realms from Level 0 (Jodhpur) to Level 7 to unlock the 100 MCQs Certification Exam.");
       });
     } else {
       examBtn.innerHTML = `<span>👑 Grand Final Exam (100 MCQs)</span>`;
@@ -519,8 +519,9 @@ class GraphLandApp {
         // Unlock next level
         if (level.id === this.state.unlockedLevel && this.state.unlockedLevel < 7) {
           this.state.unlockedLevel++;
+          const nextLvl = this.levels.find(l => l.id === this.state.unlockedLevel);
           this.state.levelPnrs[this.state.unlockedLevel] = this.generateRandomPNR(
-            this.levels[this.state.unlockedLevel - 1].pnrPrefix
+            nextLvl ? nextLvl.pnrPrefix : "GL"
           );
         }
 

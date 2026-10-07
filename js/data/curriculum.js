@@ -4,6 +4,261 @@
 
 export const GRAPH_LEVELS = [
   {
+    id: 0,
+    title: "Level 0: The Blue City Expedition (Jodhpur)",
+    subtitle: "JIET Group of Institutions to Marwar's Crown Jewels — Intuitive Graph Mastery Without Code",
+    badgeName: "Blue City Explorer",
+    badgeIcon: "🏰",
+    themeColor: "#00d2ff",
+    pnrPrefix: "GL0-JODHPUR",
+    story: {
+      kapilQuote: "Padharo Mhare Desh! Welcome to Jodhpur, the legendary Blue City of Rajasthan! Before we write any code in higher realms, let's experience graph theory in the real world. Starting from our technological launchpad at the JIET Group of Institutions, we will navigate through Mehrangarh Fort, Umaid Bhawan Palace, and Mandore Gardens. Every highway, royal gate, and narrow desert alley is a living graph!",
+      context: "Mentor Kapil gathers the cadets on the lush grounds of the JIET campus. Here in Level 0, there is NO CODING required. You will develop pure spatial intuition and master Time & Memory complexities through the historic geography of Jodhpur!"
+    },
+    theory: [
+      {
+        heading: "1. The Jodhpur Landmark Network: Vertices & Edges",
+        content: `Imagine looking down at the Sun City of Jodhpur from a satellite:
+- **Vertices (Landmarks):** Key locations where people gather:
+  - **Node 0:** JIET Group of Institutions (Our Academic Launchpad)
+  - **Node 1:** AIIMS Jodhpur & Bhagat Ki Kothi (Midtown Transit Hub)
+  - **Node 2:** Umaid Bhawan Palace (Golden Sandstone Architectural Wonder)
+  - **Node 3:** Clock Tower (Ghanta Ghar) & Sardar Market (Vibrant Old City Heart)
+  - **Node 4:** Toorji Ka Jhalra (Intricate 18th-century Stepwell)
+  - **Node 5:** Jaswant Thada (White Marble Cenotaph / Taj Mahal of Marwar)
+  - **Node 6:** Mehrangarh Fort (Majestic Citadel Standing on a 400ft Cliff)
+  - **Node 7:** Rao Jodha Desert Rock Park (Ecological Heritage Trails)
+  - **Node 8:** Mandore Gardens (Ancient Capital with Royal Cenotaphs)
+  - **Node 9:** Kaylana Lake (Tranquil Sunset Waters & Water Reserve)
+- **Edges (Roads & Highways):** The arteries connecting these landmarks (NH-62 Pali Road, High Court Road, Fort Winding Road, Mandore Highway).
+- **Directed vs. Undirected:**
+  - Modern wide highways (Pali Road from JIET) are **Undirected (Bidirectional)**: traffic moves both ways freely.
+  - The narrow, historic blue alleys inside Sardar Market are **Directed (One-Way)**: traffic flows only in one direction to prevent gridlock!`
+      },
+      {
+        heading: "2. All Graph Concepts in Real-World Jodhpur (Zero Coding!)",
+        content: `### A. Breadth-First Search (BFS) - The Sightseeing Ripple
+- Start at **JIET Campus** and explore nearest sights in concentric rings:
+  - **Ring 1:** AIIMS & Pali Highway (Immediate neighbors)
+  - **Ring 2:** Umaid Bhawan & Clock Tower
+  - **Ring 3:** Mehrangarh Fort & Jaswant Thada
+  - **Ring 4:** Mandore Gardens
+- **Intuitive Rule:** BFS guarantees finding the route with the **fewest road transitions** (minimum stops) in an unweighted city grid!
+
+### B. Depth-First Search (DFS) - The Heritage Trail Spelunker
+- A backpacker starts at JIET, takes a road to Clock Tower, immediately hikes up to Toorji Stepwell, climbs to Jaswant Thada, enters Mehrangarh Fort, walks to the edge of Desert Rock Park until reaching a dead end cliff, and then **backtracks** step-by-step.
+- **Intuitive Rule:** DFS goes as deep as possible down a single scenic route before backtracking!
+
+### C. Dijkstra's Shortest Path - Fast Travel Across Marwar
+- Each road has a **weight**: physical distance in kilometers (km) plus traffic delay in minutes.
+- Dijkstra calculates the fastest path from **JIET to Mehrangarh Fort** by greedily prioritizing roads with the lowest cumulative travel time, avoiding congested bottleneck bazaars!
+
+### D. Minimum Spanning Tree (MST) - Jodhpur Smart Shuttle & Fiber Grid
+- The Jodhpur Tourism Board wants to connect **ALL 10 landmarks** with a zero-emission electric shuttle network and high-speed fiber-optic cable with the **minimum total road distance**.
+- You do NOT need all roads! Exactly **$V - 1 = 9$ roads** are sufficient to connect all 10 landmarks without creating redundant circular loops!
+
+### E. Bridges & Articulation Points - Single Points of Failure
+- The steep winding ramp leading up the cliff to **Mehrangarh Fort** is the ONLY access route for vehicles. If that single road is blocked by a royal procession, Mehrangarh is completely cut off from the rest of the world!
+- That road is a **Bridge** (Cut-Edge), and the fort entry is an **Articulation Point** (Cut-Vertex)!
+
+### F. Eulerian Circuit - The Single-Stroke Royal Parade
+- Can the Maharaja's vintage car rally traverse **every single street in the tourist circuit exactly once** without repeating any road?
+- Euler proves: This is possible ONLY if every landmark has an **EVEN** number of connecting roads!`
+      },
+      {
+        heading: "3. Time & Memory Complexity Blueprint (The Engineer's Lens)",
+        content: `Even without writing code, every FAANG engineer thinks in terms of **Time Complexity** (how fast does it run?) and **Memory Complexity** (how much space does it consume in RAM?):
+
+| Graph Algorithm / Model | Jodhpur Tourism Analog | Time Complexity | Memory (Space) Complexity | Real-World Insight |
+|---|---|---|---|---|
+| **Adjacency Matrix** | A $10 \\times 10$ table checking if two sights connect | $O(1)$ lookup | $O(V^2)$ memory | Perfect for 10 landmarks ($100$ cells). But for all $10^6$ addresses in Rajasthan, it wastes gigabytes of empty zeros! |
+| **Adjacency List** | A pocket diary listing only actual roads from each landmark | $O(\\deg(u))$ neighbors | $O(V + E)$ memory | Uses memory only for roads that actually exist. Compact and highly scalable! |
+| **BFS (Ripples)** | Dispatching city tourist shuttles layer-by-layer | $O(V + E)$ | $O(V)$ in Queue | Every landmark and road checked once. Queue holds current search frontier. |
+| **DFS (Trail Explorer)** | Backpacker hiking single route to dead end | $O(V + E)$ | $O(V)$ in Call Stack | Linear time. Memory bounded by longest path in the city. |
+| **Dijkstra (Shortest Path)** | GPS navigation with live kilometer weights | $O((V + E) \\log V)$ | $O(V)$ in Min-Heap | Fast greedy priority queue; log factor comes from keeping shortest road on top. |
+| **Kruskal (MST)** | Connecting all sights with least fiber optic cable | $O(E \\log E)$ | $O(V)$ in DSU | Time dominated by sorting roads by length; DSU tree flattens in near $O(1)$ time. |
+| **Tarjan (Bridges)** | Scanning city for vulnerable single-road cuts | $O(V + E)$ | $O(V)$ for discovery times | Discovers all critical road bridges in a single elegant traversal pass! |`
+      }
+    ],
+    oopsMoment: {
+      title: "Oops! The Clock Tower One-Way Deadlock",
+      scenario: "A tourist vehicle drove into the narrow alleys around Ghanta Ghar (Clock Tower) ignoring one-way traffic arrows. Two other vehicles entered from opposite lanes, creating an unbreakable circular gridlock!",
+      whyItFails: "A directed cycle with no exit path traps vehicles in an unresolved dependency loop. In computer science, this is a classic Deadlock!",
+      kapilInsight: "Kapil warns: 'Always respect directed edge arrows! Whether in ancient bazaars or distributed cloud microservices, circular dependencies cause complete system freezes.'"
+    },
+    aahaMoment: {
+      title: "Aaha! The 9-Road Fiber Miracle (MST)",
+      content: "To connect all 10 iconic landmarks of Jodhpur (from JIET to Mehrangarh and Mandore), you do NOT need all 12 roads. Exactly 9 roads (V - 1) form a Minimum Spanning Tree, linking the entire city with zero cycles and minimum possible cable distance! Nature and mathematics love minimalism!"
+    },
+    interactiveDefaultGraph: {
+      nodes: [
+        { id: 0, label: "0: JIET Campus", x: 100, y: 310 },
+        { id: 1, label: "1: AIIMS Jodhpur", x: 200, y: 240 },
+        { id: 2, label: "2: Umaid Bhawan", x: 440, y: 260 },
+        { id: 3, label: "3: Clock Tower", x: 290, y: 170 },
+        { id: 4, label: "4: Toorji Stepwell", x: 230, y: 120 },
+        { id: 5, label: "5: Jaswant Thada", x: 350, y: 110 },
+        { id: 6, label: "6: Mehrangarh Fort", x: 420, y: 70 },
+        { id: 7, label: "7: Desert Rock Park", x: 280, y: 50 },
+        { id: 8, label: "8: Mandore Gardens", x: 520, y: 40 },
+        { id: 9, label: "9: Kaylana Lake", x: 110, y: 140 }
+      ],
+      edges: [
+        { u: 0, v: 1, weight: 8 },
+        { u: 1, v: 3, weight: 6 },
+        { u: 1, v: 2, weight: 7 },
+        { u: 3, v: 2, weight: 5 },
+        { u: 3, v: 4, weight: 1 },
+        { u: 4, v: 5, weight: 2 },
+        { u: 5, v: 6, weight: 1 },
+        { u: 6, v: 7, weight: 1 },
+        { u: 6, v: 8, weight: 9 },
+        { u: 3, v: 8, weight: 8 },
+        { u: 1, v: 9, weight: 9 },
+        { u: 9, v: 7, weight: 7 }
+      ],
+      directed: false
+    },
+    miniGame: {
+      title: "The Royal Jodhpur Shuttle Route",
+      instructions: "From JIET Campus (Node 0), what is the minimum number of road hops (edges) required to reach Mehrangarh Fort (Node 6) using BFS?",
+      options: [
+        "2 road hops (JIET -> Mehrangarh)",
+        "3 road hops (JIET -> AIIMS -> Clock Tower -> Mandore)",
+        "4 road hops (JIET -> AIIMS -> Clock Tower -> Toorji Stepwell -> Mehrangarh via Jaswant Thada)",
+        "8 road hops (Visiting all intermediate sights)"
+      ],
+      correctIndex: 2,
+      explanation: "From JIET (0), BFS hops to AIIMS (1), then to Clock Tower (3), then to Toorji/Jaswant Thada (4/5), and arrives at Mehrangarh Fort (6) in exactly 4 road hops!"
+    },
+    quiz: [
+      {
+        question: "In the Jodhpur graph, why is the single winding road leading up to Mehrangarh Fort considered a 'Bridge' in graph theory?",
+        options: [
+          "Because it is built over water",
+          "Because removing or blocking it increases the number of connected components, completely isolating Mehrangarh Fort from Jodhpur",
+          "Because it connects two odd-degree vertices",
+          "Because its edge weight is 0"
+        ],
+        correctIndex: 1,
+        explanation: "By definition, a Bridge is an edge whose removal disconnects the graph. Since there is no alternative path up the cliff, blocking this road isolates the fort."
+      },
+      {
+        question: "To connect all 10 Jodhpur tourist landmarks with high-speed fiber cable using a Minimum Spanning Tree (MST), how many road segments are strictly required?",
+        options: ["10 roads", "9 roads (V - 1)", "12 roads", "45 roads"],
+        correctIndex: 1,
+        explanation: "A spanning tree on V vertices always contains exactly V - 1 edges. For 10 landmarks, exactly 9 roads are needed to connect all without cycles."
+      },
+      {
+        question: "What is the Memory Complexity of storing Jodhpur's 10 landmarks using an Adjacency List versus an Adjacency Matrix?",
+        options: [
+          "Adjacency List takes O(V + E) memory; Adjacency Matrix takes O(V^2) memory",
+          "Adjacency List takes O(V^3); Matrix takes O(1)",
+          "Both take O(E^2) memory",
+          "Adjacency Matrix takes less memory for sparse road networks"
+        ],
+        correctIndex: 0,
+        explanation: "Adjacency List stores only existing roads taking O(V + E) space, whereas an Adjacency Matrix allocates a full V x V grid taking O(V^2) space."
+      }
+    ],
+    codeSolutions: {
+      c: `/* =========================================================================
+   LEVEL 0: THE JODHPUR COMPLEXITY & ARCHITECTURAL BLUEPRINT (NO CODE LEVEL)
+   -------------------------------------------------------------------------
+   C Perspective: Low-Level Memory & Cache Locality for Jodhpur Road Network
+   ========================================================================= */
+
+// In C, we analyze how Jodhpur's 10 landmarks map directly to physical silicon RAM:
+//
+// 1. ADJACENCY MATRIX MEMORY LAYOUT:
+//    - int jodhpurMatrix[10][10];
+//    - Memory = 10 * 10 * 4 bytes = 400 bytes.
+//    - Edge check time between JIET and AIIMS: matrix[0][1] in O(1) instantaneous time.
+//    - Drawback: For all 50,000 streets in Jodhpur, a 50000x50000 matrix needs 10 GB RAM!
+//
+// 2. ADJACENCY LIST MEMORY LAYOUT:
+//    - struct Road { int destination; int kmWeight; struct Road* next; };
+//    - struct Road* jodhpurAdj[10];
+//    - Memory: 10 head pointers + 24 directed edge nodes = 10*8 + 24*(4+4+8) = ~464 bytes.
+//    - Scales linearly: O(V + E) memory. Only roads that exist consume RAM!
+//
+// 3. ASYMPTOTIC SUMMARY:
+//    - BFS / DFS Time: O(V + E) = 10 vertices + 12 edges = ~22 operations (Microseconds!)
+//    - Dijkstra Time:  O((V + E) log V) with Min-Heap priority queue.
+//    - Kruskal Time:   O(E log E) sorting Jodhpur's 12 road segments.`,
+
+      cpp: `// =========================================================================
+// LEVEL 0: THE JODHPUR COMPLEXITY & ARCHITECTURAL BLUEPRINT (NO CODE LEVEL)
+// -------------------------------------------------------------------------
+// C++ Perspective: STL Efficiency & Asymptotic Invariants for Jodhpur Map
+// =========================================================================
+
+// In C++, the Standard Template Library (STL) provides optimal data structures:
+//
+// 1. GRAPH TOPOLOGY:
+//    - std::vector<std::vector<std::pair<int, int>>> jodhpurAdj(10);
+//    - jodhpurAdj[0] contains { {1, 8} } (JIET to AIIMS: 8 km).
+//    - Space Complexity: O(V + E). Compact vector contiguous memory buffers.
+//
+// 2. TIME COMPLEXITY IN JODHPUR SCENARIOS:
+//    - Exploring all sights from JIET via BFS:
+//      Time: O(V + E) -> Inspects each of the 10 landmarks and 12 roads once.
+//    - Finding fastest path from JIET to Mehrangarh Fort via std::priority_queue:
+//      Time: O((V + E) log V) -> Heap operations bound edge relaxations to log(10).
+//
+// 3. SPACE COMPLEXITY IN RAM:
+//    - Queue memory during BFS: Peak size is maximum width of Jodhpur level rings (<= 4 nodes).
+//    - DSU memory during Kruskal MST: vector<int> parent(10) -> O(V) negligible overhead.`,
+
+      java: `// =========================================================================
+// LEVEL 0: THE JODHPUR COMPLEXITY & ARCHITECTURAL BLUEPRINT (NO CODE LEVEL)
+// -------------------------------------------------------------------------
+// Java Perspective: Object-Oriented Modeling & Heap Overhead in Jodhpur
+// =========================================================================
+
+// In Java, we model the physical reality of the Blue City cleanly:
+//
+// 1. OBJECT ARCHITECTURE:
+//    - class Landmark { int id; String name; List<Road> connections; }
+//    - class Road { Landmark destination; int distanceKm; }
+//
+// 2. MEMORY CONSIDERATIONS ON THE JVM:
+//    - Each Landmark object has a 16-byte object header + 8-byte reference pointers.
+//    - Total memory for 10 landmarks + 12 roads is roughly ~3 KB on 64-bit JVM with compressed OOPs.
+//    - Garbage collection impact: O(V + E) objects created once during city map initialization.
+//
+// 3. ALGORITHM PERFORMANCE:
+//    - BFS Queue (LinkedList vs ArrayDeque):
+//      ArrayDeque consumes O(V) contiguous memory, avoiding node allocation overhead.
+//    - Dijkstra PriorityQueue: O((V + E) log V) guarantees optimal route under 1 millisecond.`,
+
+      python: `# =========================================================================
+# LEVEL 0: THE JODHPUR COMPLEXITY & ARCHITECTURAL BLUEPRINT (NO CODE LEVEL)
+# -------------------------------------------------------------------------
+# Python Perspective: High-Level Intuition & Dictionary Graph Mapping
+# =========================================================================
+
+# In Python, Jodhpur's graph is expressed as an elegant adjacency dictionary:
+#
+# jodhpur_map = {
+#     "JIET Campus": [("AIIMS Jodhpur", 8)],
+#     "AIIMS Jodhpur": [("JIET", 8), ("Clock Tower", 6), ("Umaid Bhawan", 7), ("Kaylana Lake", 9)],
+#     "Clock Tower": [("Toorji Stepwell", 1), ("Umaid Bhawan", 5), ("Mandore Gardens", 8)],
+#     "Mehrangarh Fort": [("Jaswant Thada", 1), ("Desert Rock Park", 1), ("Mandore Gardens", 9)],
+#     ...
+# }
+#
+# TIME COMPLEXITY ANALYSIS:
+# - BFS Route: O(V + E) using collections.deque (O(1) popleft).
+# - Shortest Path: O((V + E) log V) using heapq (binary heap).
+# - Minimum Spanning Tree: O(E log E) sorting edges by kilometer distance.
+#
+# SPACE COMPLEXITY ANALYSIS:
+# - Graph Storage: O(V + E) dictionary hash table entries.
+# - Memory is tiny (< 10 KB), allowing seamless execution on mobile browsers!`
+    }
+  },
+  {
     id: 1,
     title: "Level 1: Kingdom of Vertices & Edges",
     subtitle: "Foundations, Representations & The Handshaking Lemma",
