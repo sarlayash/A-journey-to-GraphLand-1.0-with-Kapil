@@ -612,7 +612,7 @@ class GraphLandApp {
           <span class="timer-digits" id="lock-countdown">${String(hours).padStart(2, "0")}:${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}</span>
         </div>
         <blockquote class="kapil-lockout-quote">
-          "Don't be discouraged, explorer! Great graph theoreticians iterate through adversity. Use this 24-hour lockout interval to revisit Realms 1 through 7, study the code implementations in C, C++, Java, and Python, and return with unstoppable mastery." - Kapil
+          "Don't be discouraged, explorer! Great graph theoreticians iterate through adversity. Use this 24-hour lockout interval to revisit Realms 0 through 7, study the code implementations in C, C++, Java, and Python, and return with unstoppable mastery." - Kapil
         </blockquote>
         <button class="btn btn-secondary" id="btn-back-to-levels">Return to Graph Realms</button>
       </div>
@@ -621,7 +621,7 @@ class GraphLandApp {
     document.getElementById("btn-back-to-levels")?.addEventListener("click", () => {
       soundEngine.playClick();
       this.showScreen("screen-level");
-      this.loadLevel(1);
+      this.loadLevel(0);
     });
 
     // Update countdown every second
@@ -986,7 +986,7 @@ class GraphLandApp {
               ? `<button class="btn btn-primary" id="btn-retake-exam">Initiate Retake Assessment ➔</button>`
               : `<button class="btn btn-secondary" id="btn-view-lockout">View 24h Locked Assessment Status</button>`
             }
-            <button class="btn btn-outline" id="btn-return-study">Revisit Realms 1 - 7</button>
+            <button class="btn btn-outline" id="btn-return-study">Revisit Realms 0 - 7</button>
           </div>
         </div>
 
@@ -1023,19 +1023,91 @@ class GraphLandApp {
     document.getElementById("btn-return-study")?.addEventListener("click", () => {
       soundEngine.playClick();
       this.showScreen("screen-level");
-      this.loadLevel(1);
+      this.loadLevel(0);
     });
   }
 
   renderMarkdown(text) {
     if (!text) return "";
-    return text
+
+    // Parse Markdown Tables
+    const lines = text.split("\n");
+    const outputBlocks = [];
+    let inTable = false;
+    let tableRows = [];
+
+    const flushTable = () => {
+      if (tableRows.length >= 2) {
+        const headerRow = tableRows[0];
+        const dataRows = tableRows.slice(1).filter(r => !/^[\s|:-]+$/.test(r.trim()));
+        const parseCells = (row) => row.split("|").slice(1, -1).map(c => c.trim());
+        const headers = parseCells(headerRow);
+
+        let html = '<div class="table-responsive"><table class="cyber-table"><thead><tr>';
+        headers.forEach(h => {
+          html += `<th>${this.formatInlineMarkdown(h)}</th>`;
+        });
+        html += '</tr></thead><tbody>';
+
+        dataRows.forEach(row => {
+          const cells = parseCells(row);
+          html += '<tr>';
+          cells.forEach(c => {
+            html += `<td>${this.formatInlineMarkdown(c)}</td>`;
+          });
+          html += '</tr>';
+        });
+        html += '</tbody></table></div>';
+        outputBlocks.push(html);
+      } else if (tableRows.length === 1) {
+        outputBlocks.push(this.formatInlineMarkdown(tableRows[0]));
+      }
+      tableRows = [];
+      inTable = false;
+    };
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      const trimmed = line.trim();
+      if (trimmed.startsWith("|") && trimmed.endsWith("|")) {
+        inTable = true;
+        tableRows.push(trimmed);
+      } else {
+        if (inTable) {
+          flushTable();
+        }
+        outputBlocks.push(line);
+      }
+    }
+    if (inTable) flushTable();
+
+    const joined = outputBlocks.join("\n");
+    return this.formatBlockMarkdown(joined);
+  }
+
+  formatInlineMarkdown(str) {
+    if (!str) return "";
+    return str
+      .replace(/\\times/g, "×")
+      .replace(/\\deg/g, "deg")
+      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+      .replace(/`([^`]+)`/g, "<code>$1</code>")
+      .replace(/\$([^$]+)\$/g, '<code class="math-badge">$1</code>');
+  }
+
+  formatBlockMarkdown(text) {
+    let html = text
       .replace(/### (.*?)\n/g, "<h4>$1</h4>")
       .replace(/## (.*?)\n/g, "<h3>$1</h3>")
+      .replace(/\\times/g, "×")
+      .replace(/\\deg/g, "deg")
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-      .replace(/`(.*?)`/g, "<code>$1</code>")
-      .replace(/\n\n/g, "<br><br>")
-      .replace(/- (.*?)\n/g, "<li>$1</li>");
+      .replace(/`([^`]+)`/g, "<code>$1</code>")
+      .replace(/\$([^$]+)\$/g, '<code class="math-badge">$1</code>')
+      .replace(/^- (.*?)$/gm, "<li>$1</li>")
+      .replace(/(<li>.*?<\/li>\n?)+/gs, "<ul>$&</ul>")
+      .replace(/\n\n+/g, "<br><br>");
+    return html;
   }
 
   initPWA() {

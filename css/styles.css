@@ -580,6 +580,74 @@ body {
   margin-bottom: 6px;
 }
 
+.theory-body ul {
+  margin: 10px 0 14px;
+}
+
+/* RESPONSIVE CYBER COMPLEXITY TABLE */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  margin: 16px 0;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(0, 243, 255, 0.25);
+  background: rgba(4, 9, 20, 0.7);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  -webkit-overflow-scrolling: touch;
+}
+
+.cyber-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+  min-width: 600px;
+}
+
+.cyber-table th {
+  background: rgba(0, 243, 255, 0.12);
+  color: var(--neon-cyan);
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid rgba(0, 243, 255, 0.35);
+  white-space: nowrap;
+}
+
+.cyber-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  color: #dbe3f3;
+  line-height: 1.5;
+  vertical-align: middle;
+}
+
+.cyber-table tr:last-child td {
+  border-bottom: none;
+}
+
+.cyber-table tr:hover td {
+  background: rgba(0, 243, 255, 0.05);
+}
+
+.cyber-table td strong {
+  color: var(--neon-gold);
+}
+
+.math-badge {
+  background: rgba(0, 255, 136, 0.1) !important;
+  color: var(--neon-emerald) !important;
+  border: 1px solid rgba(0, 255, 136, 0.25);
+  padding: 2px 7px !important;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 /* OOPS & AAHA ROW */
 .moments-grid {
   display: grid;
@@ -1341,6 +1409,8 @@ body {
   padding: 32px;
   max-width: 550px;
   width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
   text-align: center;
 }

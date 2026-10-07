@@ -89,112 +89,159 @@ export function generateBoardingPassCanvas(learnerName = "ALGORITHM EXPLORER", p
   ctx.fillText("EXPEDITION COMMANDED BY MENTOR KAPIL", 50, 128);
 
   // Passenger Card Box
-  ctx.fillStyle = "rgba(0, 243, 255, 0.06)";
-  ctx.fillRect(50, 150, 770, 240);
+  ctx.fillStyle = "rgba(0, 243, 255, 0.05)";
+  ctx.fillRect(50, 145, 780, 255);
   ctx.strokeStyle = "rgba(0, 243, 255, 0.25)";
   ctx.lineWidth = 1;
-  ctx.strokeRect(50, 150, 770, 240);
+  ctx.strokeRect(50, 145, 780, 255);
 
-  // Field: Passenger
-  ctx.fillStyle = "rgba(255, 255, 255, 0.55)";
+  // Field: Passenger Name with dynamic scaling
+  ctx.fillStyle = "rgba(0, 243, 255, 0.8)";
   ctx.font = "bold 11px monospace";
-  ctx.fillText("PASSENGER / CADET NAME", 75, 182);
+  ctx.fillText("PASSENGER / EXPEDITION CADET", 75, 172);
 
+  const nameLen = learnerName.length;
+  const nameFontSize = nameLen > 28 ? 18 : (nameLen > 20 ? 22 : 26);
   ctx.fillStyle = "#00f3ff";
-  ctx.font = "bold 26px 'Segoe UI', system-ui, sans-serif";
-  ctx.fillText(learnerName.toUpperCase(), 75, 214);
+  ctx.font = `bold ${nameFontSize}px 'Segoe UI', system-ui, sans-serif`;
+  ctx.fillText(learnerName.toUpperCase(), 75, 202);
 
-  // Field: Route
-  ctx.fillStyle = "rgba(255, 255, 255, 0.55)";
-  ctx.font = "bold 11px monospace";
-  ctx.fillText("ORIGIN VERTEX", 75, 255);
+  // Field: Route Section with Dedicated Sub-Cards (Zero Overlap)
+  // Sub-card 1: Origin (JIET Jodhpur)
+  const originBoxX = 75;
+  const originBoxY = 220;
+  const originBoxW = 310;
+  const originBoxH = 76;
+
+  ctx.fillStyle = "rgba(0, 243, 255, 0.08)";
+  ctx.fillRect(originBoxX, originBoxY, originBoxW, originBoxH);
+  ctx.strokeStyle = "rgba(0, 243, 255, 0.35)";
+  ctx.lineWidth = 1;
+  ctx.strokeRect(originBoxX, originBoxY, originBoxW, originBoxH);
+
+  ctx.fillStyle = "rgba(0, 243, 255, 0.9)";
+  ctx.font = "bold 10px monospace";
+  ctx.fillText("ORIGIN VERTEX [REALM 0]", originBoxX + 14, originBoxY + 20);
+
   ctx.fillStyle = "#ffffff";
-  ctx.font = "bold 15px monospace";
-  ctx.fillText("JIET GROUP OF INSTITUTIONS (JODHPUR)", 75, 280);
+  ctx.font = "bold 13px 'Segoe UI', system-ui, sans-serif";
+  ctx.fillText("JIET GROUP OF INSTITUTIONS", originBoxX + 14, originBoxY + 42);
 
-  ctx.fillStyle = "rgba(255, 255, 255, 0.55)";
-  ctx.font = "bold 11px monospace";
-  ctx.fillText("DESTINATION REALM", 340, 255);
-  ctx.fillStyle = "#00ff88";
-  ctx.font = "bold 17px monospace";
-  ctx.fillText("V7 : MASTER'S LAIR OF FLOWS", 340, 280);
-
-  // Traversal Path Arrow
   ctx.fillStyle = "#ffd700";
-  ctx.font = "bold 20px monospace";
-  ctx.fillText("══════►", 240, 278);
+  ctx.font = "bold 11px monospace";
+  ctx.fillText("BLUE CITY (JODHPUR, RJ)", originBoxX + 14, originBoxY + 62);
+
+  // Traversal Path Vector Indicator (Centered in gap)
+  ctx.save();
+  ctx.textAlign = "center";
+  ctx.fillStyle = "#ffd700";
+  ctx.font = "bold 18px monospace";
+  ctx.fillText("══►", 410, originBoxY + 38);
+
+  ctx.fillStyle = "rgba(0, 243, 255, 0.85)";
+  ctx.font = "bold 9px monospace";
+  ctx.fillText("DIRECTED", 410, originBoxY + 54);
+  ctx.restore();
+
+  // Sub-card 2: Destination Realm
+  const destBoxX = 435;
+  const destBoxY = 220;
+  const destBoxW = 370;
+  const destBoxH = 76;
+
+  ctx.fillStyle = "rgba(0, 255, 136, 0.08)";
+  ctx.fillRect(destBoxX, destBoxY, destBoxW, destBoxH);
+  ctx.strokeStyle = "rgba(0, 255, 136, 0.35)";
+  ctx.lineWidth = 1;
+  ctx.strokeRect(destBoxX, destBoxY, destBoxW, destBoxH);
+
+  ctx.fillStyle = "rgba(0, 255, 136, 0.9)";
+  ctx.font = "bold 10px monospace";
+  ctx.fillText("DESTINATION VERTEX [REALM 7]", destBoxX + 14, destBoxY + 20);
+
+  ctx.fillStyle = "#00ff88";
+  ctx.font = "bold 13px 'Segoe UI', system-ui, sans-serif";
+  ctx.fillText("V7 : MASTER'S LAIR OF FLOWS", destBoxX + 14, destBoxY + 42);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+  ctx.font = "bold 11px monospace";
+  ctx.fillText("GRAND CITADEL // GRAPH MASTERY", destBoxX + 14, destBoxY + 62);
 
   // Fields Grid Row 2
   const fields = [
     { label: "FLIGHT NO", val: "GL-2026-K1" },
     { label: "GATE", val: "ALPHA-42" },
     { label: "SEAT", val: "0x7FFF" },
-    { label: "SECURITY LEVEL", val: "ROOT (UNRESTRICTED)" }
+    { label: "CLEARANCE", val: "ROOT (REALMS 0-7)" }
   ];
 
   fields.forEach((f, i) => {
     const fx = 75 + i * 180;
     ctx.fillStyle = "rgba(255, 255, 255, 0.55)";
     ctx.font = "bold 10px monospace";
-    ctx.fillText(f.label, fx, 330);
+    ctx.fillText(f.label, fx, 332);
 
     ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 15px monospace";
-    ctx.fillText(f.val, fx, 355);
+    ctx.font = "bold 14px monospace";
+    ctx.fillText(f.val, fx, 356);
   });
 
-  // Footer: Kapil's Signature & Stamp
-  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  // Footer: Kapil's Signature & Verification Note
+  ctx.fillStyle = "#ffffff";
   ctx.font = "italic 15px Georgia, serif";
-  ctx.fillText("Certified Expedition Master: Kapil", 50, 440);
+  ctx.fillText("Certified Expedition Master: Kapil (FAANG Graph Specialist)", 50, 435);
 
   ctx.fillStyle = "#ffd700";
   ctx.font = "bold 12px monospace";
-  ctx.fillText("★ GRAPH THEORY CERTIFICATION BOARD ★", 50, 465);
+  ctx.fillText("★ GRAPH THEORY SUPREME CERTIFICATION BOARD ★", 50, 460);
+
+  ctx.fillStyle = "rgba(0, 243, 255, 0.7)";
+  ctx.font = "10px monospace";
+  ctx.fillText("JIET JODHPUR CAMPUS ➔ 8 EXPEDITION REALMS ➔ FAANG HONORS CERTIFICATION", 50, 482);
 
   // RIGHT STUB
   ctx.fillStyle = "#00f3ff";
   ctx.font = "bold 12px monospace";
-  ctx.fillText("PASSENGER STUB", stubX + 35, 60);
+  ctx.fillText("PASSENGER STUB", stubX + 35, 58);
 
   ctx.fillStyle = "#ffd700";
   ctx.font = "bold 11px monospace";
-  ctx.fillText("BOOKING PNR REFERENCE", stubX + 35, 95);
+  ctx.fillText("BOOKING PNR REFERENCE", stubX + 35, 92);
 
   // Glowing PNR Box
   ctx.fillStyle = "rgba(255, 215, 0, 0.12)";
-  ctx.fillRect(stubX + 35, 110, 260, 56);
+  ctx.fillRect(stubX + 35, 104, 260, 54);
   ctx.strokeStyle = "#ffd700";
   ctx.lineWidth = 1.5;
-  ctx.strokeRect(stubX + 35, 110, 260, 56);
+  ctx.strokeRect(stubX + 35, 104, 260, 54);
 
   ctx.fillStyle = "#ffd700";
-  ctx.font = "bold 22px 'Courier New', monospace";
+  ctx.font = "bold 20px 'Courier New', monospace";
   ctx.textAlign = "center";
-  ctx.fillText(pnr, stubX + 165, 145);
+  ctx.fillText(pnr, stubX + 165, 138);
   ctx.textAlign = "left";
 
   // Passenger Small
   ctx.fillStyle = "rgba(255, 255, 255, 0.55)";
   ctx.font = "bold 10px monospace";
-  ctx.fillText("PASSENGER", stubX + 35, 195);
+  ctx.fillText("PASSENGER", stubX + 35, 185);
   ctx.fillStyle = "#ffffff";
-  ctx.font = "bold 14px 'Segoe UI', system-ui";
-  const truncName = learnerName.length > 18 ? learnerName.slice(0, 16) + ".." : learnerName;
-  ctx.fillText(truncName.toUpperCase(), stubX + 35, 215);
+  ctx.font = "bold 13px 'Segoe UI', system-ui";
+  const truncName = learnerName.length > 20 ? learnerName.slice(0, 18) + ".." : learnerName;
+  ctx.fillText(truncName.toUpperCase(), stubX + 35, 206);
 
   // Date
   ctx.fillStyle = "rgba(255, 255, 255, 0.55)";
   ctx.font = "bold 10px monospace";
-  ctx.fillText("DATE / TIMESTAMP", stubX + 35, 245);
+  ctx.fillText("TIMESTAMP / EMBARKATION", stubX + 35, 236);
   ctx.fillStyle = "#00ff88";
-  ctx.font = "bold 12px monospace";
+  ctx.font = "bold 11px monospace";
   const dateStr = new Date().toISOString().slice(0, 10) + " " + new Date().toTimeString().slice(0, 5) + " UTC";
-  ctx.fillText(dateStr, stubX + 35, 265);
+  ctx.fillText(dateStr, stubX + 35, 256);
 
   // Dynamic Barcode
-  const barY = 300;
-  const barH = 50;
+  const barY = 285;
+  const barH = 46;
   ctx.fillStyle = "#ffffff";
   let curX = stubX + 35;
   const hashSeed = (pnr + learnerName).split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
@@ -210,16 +257,19 @@ export function generateBoardingPassCanvas(learnerName = "ALGORITHM EXPLORER", p
   // Security Hologram Shield
   ctx.strokeStyle = "rgba(0, 243, 255, 0.5)";
   ctx.lineWidth = 1;
-  ctx.strokeRect(stubX + 35, 375, 260, 65);
+  ctx.strokeRect(stubX + 35, 360, 260, 72);
   ctx.fillStyle = "rgba(0, 243, 255, 0.05)";
-  ctx.fillRect(stubX + 35, 375, 260, 65);
+  ctx.fillRect(stubX + 35, 360, 260, 72);
 
   ctx.fillStyle = "#00f3ff";
   ctx.font = "bold 11px monospace";
-  ctx.fillText("✦ FAANG VERIFIED QUANTUM KEY ✦", stubX + 45, 400);
-  ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+  ctx.fillText("✦ FAANG QUANTUM KEY VERIFIED ✦", stubX + 45, 384);
+  ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
   ctx.font = "10px monospace";
-  ctx.fillText("OFFLINE ENGINE READY // 100% SECURE", stubX + 45, 420);
+  ctx.fillText("OFFLINE ENGINE // 100% SECURE", stubX + 45, 404);
+  ctx.fillStyle = "#ffd700";
+  ctx.font = "9px monospace";
+  ctx.fillText("MENTORED BY KAPIL // JIET EXPEDITION", stubX + 45, 420);
 
   return canvas;
 }

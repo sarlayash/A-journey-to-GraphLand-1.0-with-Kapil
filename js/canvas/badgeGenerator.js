@@ -80,10 +80,12 @@ export function generateBadgeCanvas(level, learnerName = "EXPLORER", levelPnr = 
   ctx.font = "bold 18px 'Courier New', monospace";
   ctx.fillText(`LEVEL ${level.id} CLEARED`, cx, 305);
 
-  // Badge Name (e.g. Matrix Architect)
+  // Badge Name (e.g. Matrix Architect / Blue City Pathfinder)
+  const badgeNameText = (level.badgeName || "EXPEDITION BADGE").toUpperCase();
+  const badgeNameSize = badgeNameText.length > 24 ? 22 : (badgeNameText.length > 18 ? 26 : 30);
   ctx.fillStyle = "#ffffff";
-  ctx.font = "bold 32px 'Segoe UI', system-ui, sans-serif";
-  ctx.fillText(level.badgeName.toUpperCase(), cx, 345);
+  ctx.font = `bold ${badgeNameSize}px 'Segoe UI', system-ui, sans-serif`;
+  ctx.fillText(badgeNameText, cx, 345);
 
   // Divider Line
   ctx.strokeStyle = "rgba(0, 243, 255, 0.3)";
@@ -98,22 +100,25 @@ export function generateBadgeCanvas(level, learnerName = "EXPLORER", levelPnr = 
   ctx.font = "12px monospace";
   ctx.fillText("AWARDED TO CADET", cx, 400);
 
-  // Learner Name
+  // Learner Name with dynamic scaling
+  const cadetName = (learnerName || "EXPLORER").toUpperCase();
+  const nameSize = cadetName.length > 28 ? 18 : (cadetName.length > 20 ? 22 : 26);
   ctx.fillStyle = "#00ff88";
-  ctx.font = "bold 26px 'Segoe UI', system-ui, sans-serif";
-  ctx.fillText(learnerName.toUpperCase(), cx, 435);
+  ctx.font = `bold ${nameSize}px 'Segoe UI', system-ui, sans-serif`;
+  ctx.fillText(cadetName, cx, 435);
 
   // Stamped PNR Box
   ctx.fillStyle = "rgba(255, 215, 0, 0.1)";
   ctx.strokeStyle = "#ffd700";
   ctx.lineWidth = 1.5;
-  const pnrBoxW = 320;
+  const pnrBoxW = 340;
   const pnrBoxH = 50;
   ctx.fillRect(cx - pnrBoxW / 2, 470, pnrBoxW, pnrBoxH);
   ctx.strokeRect(cx - pnrBoxW / 2, 470, pnrBoxW, pnrBoxH);
 
+  const pnrFontSize = levelPnr.length > 22 ? 15 : (levelPnr.length > 18 ? 16 : 18);
   ctx.fillStyle = "#ffd700";
-  ctx.font = "bold 18px 'Courier New', monospace";
+  ctx.font = `bold ${pnrFontSize}px 'Courier New', monospace`;
   ctx.fillText(`LEVEL PNR: ${levelPnr}`, cx, 502);
 
   // Verified by Kapil

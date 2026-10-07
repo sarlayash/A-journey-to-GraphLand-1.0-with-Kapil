@@ -175,6 +175,29 @@ assert(testPdf.startsWith("%PDF-1.4"), "PDF stream has valid %PDF-1.4 magic head
 assert(testPdf.includes("startxref"), "PDF stream contains cross-reference table pointer");
 assert(testPdf.trim().endsWith("%%EOF"), "PDF stream terminates with %%EOF EOF marker");
 
+// TEST GROUP 5: FORMATTING & OVERLAP-FREE LAYOUT INTEGRITY
+console.log("\n>> 5. Testing Formatting & Non-Overlapping Layout Invariants...");
+import fs from "fs";
+
+const bpGenCode = fs.readFileSync(new URL("../js/canvas/boardingPassGenerator.js", import.meta.url), "utf-8");
+assert(bpGenCode.includes("originBoxX = 75") && bpGenCode.includes("originBoxW = 310"), "Boarding pass allocates dedicated origin card bounded at x=75..385");
+assert(bpGenCode.includes("destBoxX = 435") && bpGenCode.includes("destBoxW = 370"), "Boarding pass allocates dedicated destination card starting at x=435");
+assert(!bpGenCode.includes("x=340"), "No overlapping route text rendered at conflicting coordinates");
+assert(bpGenCode.includes("nameFontSize"), "Boarding pass dynamically scales learner name font size");
+
+const badgeGenCode = fs.readFileSync(new URL("../js/canvas/badgeGenerator.js", import.meta.url), "utf-8");
+assert(badgeGenCode.includes("badgeNameSize"), "Badge dynamically scales badge title size");
+assert(badgeGenCode.includes("nameSize"), "Badge dynamically scales cadet name font size");
+assert(badgeGenCode.includes("pnrFontSize"), "Badge dynamically scales level PNR font size");
+
+const certGenCode = fs.readFileSync(new URL("../js/canvas/certificateGenerator.js", import.meta.url), "utf-8");
+assert(certGenCode.includes("certNameFontSize"), "Certificate dynamically scales recipient name font size");
+assert(certGenCode.includes("8 progressive realms"), "Certificate citation accurately cites all 8 progressive realms");
+
+const appJsCode = fs.readFileSync(new URL("../js/app.js", import.meta.url), "utf-8");
+assert(appJsCode.includes("cyber-table") && appJsCode.includes("table-responsive"), "App markdown parser converts markdown tables into responsive cyber-tables");
+assert(appJsCode.includes("math-badge"), "App markdown parser converts math expressions into styled badges");
+
 console.log("\n=================================================");
 console.log(`TEST RESULTS: ${passed} PASSED, ${failed} FAILED`);
 console.log("=================================================");

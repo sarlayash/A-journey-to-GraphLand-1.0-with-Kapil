@@ -111,31 +111,36 @@ export function generateCertificateCanvas(learnerName = "ALGORITHM MASTER", scor
   ctx.font = "italic 22px Georgia, serif";
   ctx.fillText("This prestigious credential is proudly conferred upon", cx, 330);
 
-  // Recipient Name
+  // Recipient Name with dynamic font scaling
+  const cadetName = (learnerName || "ALGORITHM MASTER").toUpperCase();
+  let certNameFontSize = 58;
+  if (cadetName.length > 28) certNameFontSize = 38;
+  else if (cadetName.length > 20) certNameFontSize = 46;
+
   ctx.fillStyle = "#00ff88";
   ctx.shadowColor = "#00ff88";
   ctx.shadowBlur = 18;
-  ctx.font = "bold 58px 'Segoe UI', system-ui, sans-serif";
-  ctx.fillText(learnerName.toUpperCase(), cx, 410);
+  ctx.font = `bold ${certNameFontSize}px 'Segoe UI', system-ui, sans-serif`;
+  ctx.fillText(cadetName, cx, 410);
   ctx.shadowBlur = 0;
 
   // Citation text
   ctx.fillStyle = "rgba(255, 255, 255, 0.88)";
   ctx.font = "18px 'Segoe UI', system-ui, sans-serif";
-  const line1 = "for successfully mastering the complete GraphLand 1.0 curriculum and conquering all 7 realms:";
-  const line2 = "Adjacency Models, BFS/DFS, DAGs & Kahn's Topological Order, Eulerian Paths & Tarjan's Bridges,";
-  const line3 = "Dijkstra's & Bellman-Ford Shortest Paths, Kruskal's & Prim's MST with DSU, Bipartite Matching,";
-  const line4 = "Kosaraju's Strongly Connected Components, and Max-Flow Min-Cut Network Flow Theory,";
-  const line5 = `and achieving a distinguished score of ${score}% (Threshold: >= 90%) on the Final Grand 100 MCQs Examination.`;
+  const line1 = "for successfully mastering the complete GraphLand 1.0 curriculum across all 8 progressive realms:";
+  const line2 = "Realm 0 (Jodhpur Expedition: JIET Campus to Mehrangarh), Adjacency Models, BFS/DFS Traversal, DAGs & Kahn's Algorithm,";
+  const line3 = "Eulerian Paths & Tarjan's Bridges, Dijkstra's & Bellman-Ford Shortest Paths, Kruskal's & Prim's MST with DSU,";
+  const line4 = "Bipartite Graph Matching, Kosaraju's Strongly Connected Components, and Max-Flow Min-Cut Network Flow Theory,";
+  const line5 = `and achieving a distinguished score of ${score}% (Passing Threshold: >= 90%) on the Final Grand 100 MCQs Examination.`;
 
-  ctx.fillText(line1, cx, 480);
-  ctx.fillText(line2, cx, 515);
-  ctx.fillText(line3, cx, 545);
-  ctx.fillText(line4, cx, 575);
+  ctx.fillText(line1, cx, 475);
+  ctx.fillText(line2, cx, 508);
+  ctx.fillText(line3, cx, 538);
+  ctx.fillText(line4, cx, 568);
 
   ctx.fillStyle = "#ffd700";
   ctx.font = "bold 20px 'Segoe UI', system-ui, sans-serif";
-  ctx.fillText(line5, cx, 620);
+  ctx.fillText(line5, cx, 615);
 
   // Distinction Seal Box
   ctx.fillStyle = "rgba(255, 215, 0, 0.08)";
