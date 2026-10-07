@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <rect width="192" height="192" rx="36" fill="#060a17"/>
+  <circle cx="96" cy="96" r="80" fill="none" stroke="#00f3ff" stroke-width="3" opacity="0.4"/>
+  <!-- Constellation Nodes & Edges -->
+  <line x1="96" y1="42" x2="48" y2="124" stroke="#00f3ff" stroke-width="4"/>
+  <line x1="96" y1="42" x2="144" y2="124" stroke="#00f3ff" stroke-width="4"/>
+  <line x1="48" y1="124" x2="144" y2="124" stroke="#00f3ff" stroke-width="4"/>
+  <line x1="96" y1="42" x2="96" y2="148" stroke="#ffd700" stroke-width="3" stroke-dasharray="4,4"/>
+  <line x1="48" y1="124" x2="96" y2="148" stroke="#00ff88" stroke-width="3"/>
+  <line x1="144" y1="124" x2="96" y2="148" stroke="#00ff88" stroke-width="3"/>
+  <!-- Glowing Vertices -->
+  <circle cx="96" cy="42" r="14" fill="#ffd700"/>
+  <circle cx="48" cy="124" r="12" fill="#00f3ff"/>
+  <circle cx="144" cy="124" r="12" fill="#00f3ff"/>
+  <circle cx="96" cy="148" r="10" fill="#00ff88"/>
+  <text x="96" y="47" font-size="12" font-family="sans-serif" font-weight="bold" text-anchor="middle" fill="#111">K</text>
+</svg>

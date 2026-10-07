@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="96" fill="#060a17"/>
+  <circle cx="256" cy="256" r="210" fill="none" stroke="#00f3ff" stroke-width="6" opacity="0.4"/>
+  <circle cx="256" cy="256" r="160" fill="none" stroke="#bc13fe" stroke-width="3" opacity="0.3"/>
+  <!-- Graph Edges -->
+  <line x1="256" y1="110" x2="120" y2="330" stroke="#00f3ff" stroke-width="8"/>
+  <line x1="256" y1="110" x2="392" y2="330" stroke="#00f3ff" stroke-width="8"/>
+  <line x1="120" y1="330" x2="392" y2="330" stroke="#00f3ff" stroke-width="8"/>
+  <line x1="256" y1="110" x2="256" y2="400" stroke="#ffd700" stroke-width="6" stroke-dasharray="10,10"/>
+  <line x1="120" y1="330" x2="256" y2="400" stroke="#00ff88" stroke-width="7"/>
+  <line x1="392" y1="330" x2="256" y2="400" stroke="#00ff88" stroke-width="7"/>
+  <!-- Glowing Vertices -->
+  <circle cx="256" cy="110" r="36" fill="#ffd700"/>
+  <circle cx="120" cy="330" r="30" fill="#00f3ff"/>
+  <circle cx="392" cy="330" r="30" fill="#00f3ff"/>
+  <circle cx="256" cy="400" r="26" fill="#00ff88"/>
+  <text x="256" y="122" font-size="32" font-family="sans-serif" font-weight="bold" text-anchor="middle" fill="#111">K</text>
+  <text x="256" y="470" font-size="24" font-family="'Courier New', monospace" font-weight="bold" text-anchor="middle" fill="#00f3ff">GRAPHLAND 1.0</text>
+</svg>

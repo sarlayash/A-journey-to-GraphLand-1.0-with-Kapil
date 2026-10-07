@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>A Journey to GraphLand 1.0 with Kapil | FAANG Graph Masterclass</title>
+  <meta name="description" content="Master Graph Data Structures & Algorithms from Basic to Advanced with mentor Kapil. Play levels, solve code in C, C++, Java & Python, earn PNR badges, and certify offline.">
+  <meta name="theme-color" content="#060a17">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- TOP HUD BAR -->
+  <header class="hud-bar">
+    <div class="hud-brand">
+      <div class="hud-logo">🕸️</div>
+      <div>
+        <div class="hud-title">GRAPHLAND <span>1.0</span></div>
+        <div class="hud-mentor">EXPEDITION WITH KAPIL</div>
+      </div>
+    </div>
+
+    <div class="hud-stats">
+      <div class="stat-item">
+        <span class="stat-label">CADET</span>
+        <span class="stat-val" id="header-cadet-name">GUEST</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">CURRENT PNR</span>
+        <span class="stat-val stat-pnr" id="header-current-pnr">PENDING</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">PROGRESS</span>
+        <span class="stat-val" id="header-unlocked-level">LEVEL 1 / 7</span>
+      </div>
+    </div>
+
+    <div class="hud-controls">
+      <button class="btn btn-secondary btn-icon" id="btn-sound-toggle">🔊 Sound ON</button>
+      <button class="btn btn-outline btn-icon" id="btn-install-pwa" style="display:none;">📱 Install App</button>
+      <button class="btn btn-secondary btn-icon" id="btn-reset-game" title="Reset Game Progress">🔄 Reset</button>
+    </div>
+  </header>
+
+  <!-- SCREEN 1: CHECK-IN & BOARDING PASS -->
+  <section class="game-screen active" id="screen-checkin">
+    <div class="checkin-container">
+      <div class="checkin-hero">
+        <div class="badge-tag">FAANG GRAPH ACADEMY // SEASON 1.0</div>
+        <h1>A Journey to <span>GraphLand</span> with Kapil</h1>
+        <p class="hero-lead">
+          Embark on an epic algorithmic journey across 7 enchanted realms of Graph Data Structures. Master every graph theorem from Königsberg bridges to Max-Flow cuts, complete code solutions in 4 languages, earn verifiable PNR badges, and achieve your FAANG Mastery Certificate.
+        </p>
+
+        <ul class="hero-features">
+          <li>✨ <strong>7 Deep Realms:</strong> Basics, BFS/DFS, DAGs, Eulerian, Shortest Paths, MST, and Max Flow.</li>
+          <li>⚡ <strong>Quad-Language Labs:</strong> 100% solved solutions in C, C++, Java, and Python.</li>
+          <li>🎟️ <strong>Dynamic PNR System:</strong> Unique PNR stamped on your Boarding Pass and every Level Badge.</li>
+          <li>🎮 <strong>Interactive Sandbox:</strong> Live HTML5 Canvas algorithm simulator with node dragging.</li>
+          <li>👑 <strong>Grand Final Exam:</strong> 100 MCQs timed test, 90% passing score, with PNG & PDF Certificate!</li>
+          <li>📴 <strong>100% Offline Ready:</strong> Installable PWA with pure Web Audio and zero CDN dependencies.</li>
+        </ul>
+      </div>
+
+      <div class="terminal-card">
+        <div class="terminal-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">flight-checkin@graphland-hyperloop ~</span>
+        </div>
+        <div class="terminal-body">
+          <h2>Expedition Check-In</h2>
+          <p class="terminal-desc">Enter your name to generate your Quantum Boarding Pass & unique PNR:</p>
+
+          <form id="checkin-form">
+            <div class="form-group">
+              <label for="input-cadet-name">Learner / Cadet Full Name</label>
+              <input type="text" id="input-cadet-name" class="input-cyber" placeholder="e.g. Alex Turing" required autocomplete="name">
+              <span class="input-hint">This name will be embossed on your Boarding Pass, Badges, and Certificate.</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">
+              Issue Boarding Pass & Embark ➔
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 2: LEVEL EXPLORATION ARENA -->
+  <section class="game-screen" id="screen-level">
+    <!-- Level Realm Navigation Strip -->
+    <nav class="level-nav-strip" id="level-nav-container">
+      <!-- Populated dynamically by app.js -->
+    </nav>
+
+    <!-- Level Header -->
+    <div class="level-header-card">
+      <div class="level-badge-emblem" id="level-badge-icon">🏛️</div>
+      <div class="level-meta">
+        <h2 id="level-title">Level Title Loading...</h2>
+        <p id="level-subtitle">Subtitle Loading...</p>
+      </div>
+      <div class="level-tags">
+        <span class="badge-tag" id="level-theme-tag">Matrix Architect</span>
+        <span class="level-pnr-tag" id="level-pnr-tag">LEVEL PNR: PENDING</span>
+      </div>
+    </div>
+
+    <!-- Story Dialogue with Mentor Kapil -->
+    <div class="kapil-dialogue-card">
+      <div class="kapil-avatar">🧔🏻‍♂️</div>
+      <div class="kapil-dialogue-body">
+        <div class="kapil-name">
+          <span>KAPIL</span>
+          <span class="badge-tag" style="padding: 2px 6px; font-size: 9px;">LEAD MENTOR & ARCHITECT</span>
+        </div>
+        <p class="kapil-quote" id="kapil-quote-text">"Quote loading..."</p>
+        <p class="kapil-context" id="kapil-context-text">Context loading...</p>
+      </div>
+    </div>
+
+    <!-- Theory Concepts Section -->
+    <div class="theory-container" id="theory-container">
+      <!-- Populated dynamically -->
+    </div>
+
+    <!-- Oops & Aaha Moments Row -->
+    <div class="moments-grid">
+      <div class="oops-card" id="oops-card">
+        <!-- Oops moment content -->
+      </div>
+      <div class="aaha-card" id="aaha-card">
+        <!-- Aaha moment content -->
+      </div>
+    </div>
+
+    <!-- Interactive Graph Sandbox -->
+    <div class="canvas-arena-card">
+      <div class="canvas-header">
+        <h4>🎮 Interactive Graph Visualizer & Algorithm Simulator</h4>
+        <span class="canvas-hint">Drag nodes freely with mouse or touch. Run step-by-step algorithms!</span>
+      </div>
+      <div class="canvas-wrapper">
+        <canvas id="graph-canvas"></canvas>
+      </div>
+      <div class="canvas-controls-bar">
+        <div class="sim-btns">
+          <button class="btn btn-secondary btn-icon" id="btn-sim-bfs">▶ Run BFS</button>
+          <button class="btn btn-secondary btn-icon" id="btn-sim-dfs">▶ Run DFS</button>
+          <button class="btn btn-secondary btn-icon" id="btn-sim-dijkstra">▶ Run Dijkstra</button>
+          <button class="btn btn-outline btn-icon" id="btn-sim-reset">↺ Reset Graph</button>
+        </div>
+        <div class="sim-status-log" id="sim-status-log">Ready. Drag nodes or select an algorithm above!</div>
+      </div>
+    </div>
+
+    <!-- Quad-Language Code Solutions Lab -->
+    <div class="code-lab-card">
+      <div class="code-lab-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <h4>💻 Verified Code Implementations</h4>
+          <span class="badge-tag" id="code-lang-indicator" style="margin: 0; padding: 2px 8px; font-size: 10px;">PYTHON</span>
+        </div>
+        <div class="lang-tabs">
+          <button class="lang-tab" data-lang="c">C</button>
+          <button class="lang-tab" data-lang="cpp">C++</button>
+          <button class="lang-tab" data-lang="java">Java</button>
+          <button class="lang-tab active" data-lang="python">Python</button>
+          <button class="btn btn-secondary btn-icon" id="btn-copy-code" style="margin-left: 6px;">📋 Copy</button>
+        </div>
+      </div>
+      <div class="code-display-wrap">
+        <pre><code class="code-display" id="code-display">// Loading verified code...</code></pre>
+      </div>
+    </div>
+
+    <!-- Mini-Game Challenge -->
+    <div id="minigame-container">
+      <!-- Mini game rendered dynamically -->
+    </div>
+
+    <!-- Level Mastery Checkpoint Quiz (3 Qs) -->
+    <div class="level-quiz-card" id="level-quiz-container">
+      <!-- Quiz rendered dynamically -->
+    </div>
+  </section>
+
+  <!-- SCREEN 3: GRAND FINAL EXAM (100 MCQS) -->
+  <section class="game-screen" id="screen-final-exam">
+    <div id="final-exam-container">
+      <!-- Exam intro, live test arena, or passed/failed result rendered dynamically -->
+    </div>
+  </section>
+
+  <!-- MODAL: BOARDING PASS -->
+  <div class="modal-overlay" id="modal-boarding-pass">
+    <div class="modal-box">
+      <div style="font-size: 48px; margin-bottom: 10px;">🎫</div>
+      <h3>Boarding Pass Authorized!</h3>
+      <p class="modal-desc">Your Quantum Hyperloop ticket for GraphLand 1.0 has been minted by Kapil.</p>
+
+      <div class="pass-card-preview">
+        <p style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">PASSENGER CADET</p>
+        <p style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 8px;" id="modal-pass-name">CADET</p>
+        <p style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">FLIGHT PNR</p>
+        <p class="pnr-large" id="modal-pass-pnr">PNR-GL-INIT-0000</p>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-gold btn-large" id="btn-download-pass">
+          📥 Download Boarding Pass (PNG)
+        </button>
+        <button class="btn btn-primary btn-large" id="btn-start-journey">
+          Enter Level 1: Kingdom of Vertices ➔
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: LEVEL CLEARED BADGE -->
+  <div class="modal-overlay" id="modal-level-cleared">
+    <div class="modal-box">
+      <div style="font-size: 52px; margin-bottom: 10px;">🛡️</div>
+      <h3 id="modal-cleared-title">Level Cleared!</h3>
+      <p class="modal-desc">Mentor Kapil has certified your mastery. Your exclusive Level Badge with a brand-new PNR is ready to download.</p>
+
+      <div class="pass-card-preview">
+        <p style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">AWARDED TO</p>
+        <p style="font-size: 18px; font-weight: 800; color: var(--neon-emerald); margin-bottom: 8px;" id="modal-cleared-name">CADET</p>
+        <p style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">STAMPED LEVEL PNR</p>
+        <p class="pnr-large" id="modal-cleared-pnr">PNR-GL1-0000</p>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-gold btn-large" id="btn-download-level-badge">
+          📥 Download Badge (PNG with PNR)
+        </button>
+        <button class="btn btn-primary btn-large" id="btn-proceed-next-level">
+          Advance to Next Realm ➔
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Application Script (ES Module) -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

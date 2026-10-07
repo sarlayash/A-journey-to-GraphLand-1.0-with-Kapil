@@ -1,0 +1,21 @@
+{
+  "name": "a-journey-to-graphland",
+  "version": "1.0.0",
+  "description": "A Journey to GraphLand 1.0 with Kapil - FAANG Graph DSA Game",
+  "type": "module",
+  "scripts": {
+    "start": "npx serve -l 3000 .",
+    "test": "node tests/test_suite.mjs"
+  },
+  "keywords": [
+    "graphs",
+    "dsa",
+    "algorithms",
+    "faang",
+    "game",
+    "pwa",
+    "offline"
+  ],
+  "author": "Kapil & GraphLand Academy",
+  "license": "MIT"
+}

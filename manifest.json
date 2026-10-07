@@ -1,0 +1,24 @@
+{
+  "name": "A Journey to GraphLand 1.0 with Kapil",
+  "short_name": "GraphLand",
+  "description": "Master Graph Data Structures & Algorithms from Basic to Advanced with Kapil. 100% Offline PWA Game.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#060a17",
+  "theme_color": "#060a17",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
