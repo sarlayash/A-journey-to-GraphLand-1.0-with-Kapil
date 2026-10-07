@@ -33,13 +33,43 @@ export class GraphVisualizer {
     if (!this.canvas) return;
     const rect = this.canvas.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
-    this.width = rect.width || 600;
-    this.height = rect.height || 360;
+    this.width = rect.width || 800;
+    this.height = rect.height || 460;
     this.canvas.width = this.width * dpr;
     this.canvas.height = this.height * dpr;
     this.ctx.resetTransform?.();
     this.ctx.scale(dpr, dpr);
     this.render();
+  }
+
+  fitToFrame() {
+    if (!this.nodes || this.nodes.length === 0 || !this.width || !this.height) return;
+
+    // Compute bounding box of current nodes
+    const xs = this.nodes.map(n => n.x);
+    const ys = this.nodes.map(n => n.y);
+    const minX = Math.min(...xs);
+    const maxX = Math.max(...xs);
+    const minY = Math.min(...ys);
+    const maxY = Math.max(...ys);
+
+    const spanX = maxX - minX || 1;
+    const spanY = maxY - minY || 1;
+
+    // Generous padding so chips and nodes never touch the canvas borders
+    const padX = Math.max(75, this.width * 0.08);
+    const padY = Math.max(65, this.height * 0.14);
+
+    const targetW = Math.max(this.width - 2 * padX, 200);
+    const targetH = Math.max(this.height - 2 * padY, 150);
+
+    const scaleX = targetW / spanX;
+    const scaleY = targetH / spanY;
+
+    this.nodes.forEach(node => {
+      node.x = padX + (node.x - minX) * scaleX;
+      node.y = padY + (node.y - minY) * scaleY;
+    });
   }
 
   loadGraph(graphData, themeColor = "#00f3ff") {
@@ -48,6 +78,8 @@ export class GraphVisualizer {
     this.edges = (graphData.edges || []).map(e => ({ ...e }));
     this.directed = !!graphData.directed;
     this.resetAlgorithmState();
+    this.resize();
+    this.fitToFrame();
     this.render();
   }
 
@@ -64,6 +96,13 @@ export class GraphVisualizer {
 
   initEvents() {
     if (!this.canvas) return;
+
+    // Window resize observer
+    window.addEventListener("resize", () => {
+      this.resize();
+      this.fitToFrame();
+      this.render();
+    });
 
     const getPos = (e) => {
       const rect = this.canvas.getBoundingClientRect();
@@ -89,8 +128,8 @@ export class GraphVisualizer {
     const onMove = (e) => {
       const pos = getPos(e);
       if (this.draggedNode) {
-        this.draggedNode.x = Math.max(30, Math.min(this.width - 30, pos.x + this.dragOffset.x));
-        this.draggedNode.y = Math.max(30, Math.min(this.height - 30, pos.y + this.dragOffset.y));
+        this.draggedNode.x = Math.max(35, Math.min(this.width - 35, pos.x + this.dragOffset.x));
+        this.draggedNode.y = Math.max(35, Math.min(this.height - 35, pos.y + this.dragOffset.y));
         this.render();
       } else {
         const hovered = this.getNodeAt(pos.x, pos.y);
@@ -117,7 +156,7 @@ export class GraphVisualizer {
   }
 
   getNodeAt(x, y) {
-    const radius = 24;
+    const radius = 28;
     return this.nodes.find(n => {
       const dx = n.x - x;
       const dy = n.y - y;
@@ -443,7 +482,7 @@ export class GraphVisualizer {
       ctx.restore();
     });
 
-    // Draw Nodes
+    // Draw Nodes (De-cluttered: Center ID + Floating Cyber Landmark Chip)
     this.nodes.forEach(node => {
       const isVisited = this.visitedNodeIds.has(node.id);
       const isActive = this.activeNodeId === node.id;
@@ -456,20 +495,20 @@ export class GraphVisualizer {
       // Glow shader
       if (isActive) {
         ctx.shadowColor = "#ffd700";
-        ctx.shadowBlur = 20;
+        ctx.shadowBlur = 22;
         ctx.fillStyle = "#ffd700";
       } else if (isVisited) {
         ctx.shadowColor = "#00ff88";
-        ctx.shadowBlur = 14;
+        ctx.shadowBlur = 18;
         ctx.fillStyle = "#00ff88";
       } else if (isHovered || isSelected) {
         ctx.shadowColor = this.themeColor;
-        ctx.shadowBlur = 16;
+        ctx.shadowBlur = 20;
         ctx.fillStyle = this.themeColor;
       } else {
-        ctx.shadowColor = "rgba(0, 243, 255, 0.3)";
-        ctx.shadowBlur = 8;
-        ctx.fillStyle = "#121b2d";
+        ctx.shadowColor = "rgba(0, 243, 255, 0.4)";
+        ctx.shadowBlur = 10;
+        ctx.fillStyle = "#0f1c36";
       }
 
       // Outer circle
@@ -489,25 +528,84 @@ export class GraphVisualizer {
       ctx.stroke();
 
       // Node Inner Center
-      ctx.fillStyle = isActive ? "#111" : isVisited ? "#042013" : "#080e1b";
+      ctx.fillStyle = isActive ? "#111625" : isVisited ? "#042013" : "#070c1a";
       ctx.beginPath();
       ctx.arc(node.x, node.y, radius - 4, 0, Math.PI * 2);
       ctx.fill();
 
-      // Node Label
+      // Node Primary Numeric ID (Centered, bold, crystal-clear)
+      const idText = String(node.id);
       ctx.fillStyle = isActive ? "#ffd700" : isVisited ? "#00ff88" : "#ffffff";
-      ctx.font = "bold 12px 'Segoe UI', system-ui, sans-serif";
+      ctx.font = "bold 15px 'Segoe UI', system-ui, sans-serif";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillText(node.label || `${node.id}`, node.x, node.y - 1);
+      ctx.fillText(idText, node.x, node.y + 0.5);
 
-      // Distance tag if in Dijkstra
+      // Node Exterior Landmark / Title Chip (Floating clean cyber pill)
+      let descText = node.label || "";
+      if (descText.includes(":")) {
+        descText = descText.split(":").slice(1).join(":").trim();
+      }
+      if (!descText) descText = `Node ${node.id}`;
+
+      ctx.font = "bold 11px 'Segoe UI', system-ui, sans-serif";
+      const textWidth = ctx.measureText(descText).width;
+      const pillW = Math.max(textWidth + 16, 54);
+      const pillH = 20;
+      const pillX = node.x - pillW / 2;
+
+      // Smart placement: above if node is below 110px, else below
+      const placeAbove = node.y > 110;
+      const pillY = placeAbove ? (node.y - radius - 19) : (node.y + radius + 9);
+
+      // Delicate connector hairline from node ring to pill chip
+      ctx.strokeStyle = isActive
+        ? "rgba(255, 215, 0, 0.6)"
+        : isVisited
+        ? "rgba(0, 255, 136, 0.5)"
+        : "rgba(0, 243, 255, 0.3)";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(node.x, placeAbove ? (node.y - radius) : (node.y + radius));
+      ctx.lineTo(node.x, placeAbove ? (pillY + pillH) : pillY);
+      ctx.stroke();
+
+      // Chip pill background
+      ctx.fillStyle = isActive
+        ? "rgba(255, 215, 0, 0.16)"
+        : isVisited
+        ? "rgba(0, 255, 136, 0.16)"
+        : "rgba(7, 13, 28, 0.92)";
+      ctx.strokeStyle = isActive
+        ? "#ffd700"
+        : isVisited
+        ? "#00ff88"
+        : "rgba(0, 243, 255, 0.4)";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      if (typeof ctx.roundRect === "function") {
+        ctx.roundRect(pillX, pillY, pillW, pillH, 5);
+      } else {
+        ctx.rect(pillX, pillY, pillW, pillH);
+      }
+      ctx.fill();
+      ctx.stroke();
+
+      // Chip pill text
+      ctx.fillStyle = isActive ? "#ffd700" : isVisited ? "#00ff88" : "#e6f1ff";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(descText, node.x, pillY + pillH / 2);
+
+      // Distance tag if running Dijkstra
       if (this.nodeDistances[node.id] !== undefined) {
         const d = this.nodeDistances[node.id];
-        const text = d === Infinity ? "∞" : `d:${d}`;
+        const distText = d === Infinity ? "d: ∞" : `d: ${d}`;
+        const distY = placeAbove ? (node.y + radius + 14) : (pillY + pillH + 12);
+
         ctx.fillStyle = "#ffd700";
-        ctx.font = "bold 10px monospace";
-        ctx.fillText(text, node.x, node.y + radius + 13);
+        ctx.font = "bold 11px monospace";
+        ctx.fillText(distText, node.x, distY);
       }
 
       ctx.restore();

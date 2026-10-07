@@ -92,16 +92,16 @@ export const GRAPH_LEVELS = [
     },
     interactiveDefaultGraph: {
       nodes: [
-        { id: 0, label: "0: JIET Campus", x: 100, y: 310 },
-        { id: 1, label: "1: AIIMS Jodhpur", x: 200, y: 240 },
-        { id: 2, label: "2: Umaid Bhawan", x: 440, y: 260 },
-        { id: 3, label: "3: Clock Tower", x: 290, y: 170 },
-        { id: 4, label: "4: Toorji Stepwell", x: 230, y: 120 },
-        { id: 5, label: "5: Jaswant Thada", x: 350, y: 110 },
-        { id: 6, label: "6: Mehrangarh Fort", x: 420, y: 70 },
-        { id: 7, label: "7: Desert Rock Park", x: 280, y: 50 },
-        { id: 8, label: "8: Mandore Gardens", x: 520, y: 40 },
-        { id: 9, label: "9: Kaylana Lake", x: 110, y: 140 }
+        { id: 0, label: "0: JIET Campus", x: 80, y: 390 },
+        { id: 1, label: "1: AIIMS Jodhpur", x: 230, y: 300 },
+        { id: 2, label: "2: Umaid Bhawan", x: 530, y: 360 },
+        { id: 3, label: "3: Clock Tower", x: 420, y: 220 },
+        { id: 4, label: "4: Toorji Stepwell", x: 310, y: 120 },
+        { id: 5, label: "5: Jaswant Thada", x: 560, y: 130 },
+        { id: 6, label: "6: Mehrangarh Fort", x: 740, y: 150 },
+        { id: 7, label: "7: Desert Rock Park", x: 440, y: 50 },
+        { id: 8, label: "8: Mandore Gardens", x: 920, y: 80 },
+        { id: 9, label: "9: Kaylana Lake", x: 120, y: 160 }
       ],
       edges: [
         { u: 0, v: 1, weight: 8 },
