@@ -128,6 +128,9 @@ export class GraphVisualizer {
   // Algorithm Simulator: BFS
   runBFS(startId = 0, onStepCallback) {
     this.resetAlgorithmState();
+    if (!this.nodes || this.nodes.length === 0) return;
+    if (!this.nodes.some(n => n.id === startId)) startId = this.nodes[0].id;
+
     const adj = {};
     this.nodes.forEach(n => (adj[n.id] = []));
     this.edges.forEach(e => {
@@ -183,6 +186,9 @@ export class GraphVisualizer {
   // Algorithm Simulator: DFS
   runDFS(startId = 0, onStepCallback) {
     this.resetAlgorithmState();
+    if (!this.nodes || this.nodes.length === 0) return;
+    if (!this.nodes.some(n => n.id === startId)) startId = this.nodes[0].id;
+
     const adj = {};
     this.nodes.forEach(n => (adj[n.id] = []));
     this.edges.forEach(e => {
@@ -236,6 +242,9 @@ export class GraphVisualizer {
   // Algorithm Simulator: Dijkstra
   runDijkstra(startId = 0, onStepCallback) {
     this.resetAlgorithmState();
+    if (!this.nodes || this.nodes.length === 0) return;
+    if (!this.nodes.some(n => n.id === startId)) startId = this.nodes[0].id;
+
     const adj = {};
     this.nodes.forEach(n => (adj[n.id] = []));
     this.edges.forEach(e => {

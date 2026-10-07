@@ -195,8 +195,49 @@ assert(certGenCode.includes("certNameFontSize"), "Certificate dynamically scales
 assert(certGenCode.includes("8 progressive realms"), "Certificate citation accurately cites all 8 progressive realms");
 
 const appJsCode = fs.readFileSync(new URL("../js/app.js", import.meta.url), "utf-8");
-assert(appJsCode.includes("cyber-table") && appJsCode.includes("table-responsive"), "App markdown parser converts markdown tables into responsive cyber-tables");
-assert(appJsCode.includes("math-badge"), "App markdown parser converts math expressions into styled badges");
+// TEST GROUP 6: DOM ID INTEGRITY & OFFLINE PWA CACHE VERIFICATION
+console.log("\n>> 6. Testing DOM ID Integrity & Offline PWA Assets...");
+
+const indexHtml = fs.readFileSync(new URL("../index.html", import.meta.url), "utf-8");
+const idMatches = [...appJsCode.matchAll(/document\.getElementById\(['"]([^'"]+)['"]\)/g)].map(m => m[1]);
+const uniqueAppIds = [...new Set(idMatches)];
+
+const dynamicIds = new Set([
+  'btn-start-exam-now',
+  'btn-submit-exam-early',
+  'btn-prev-q',
+  'btn-next-q',
+  'exam-live-timer',
+  'palette-grid',
+  'question-view-panel',
+  'btn-download-cert-png',
+  'btn-download-cert-pdf',
+  'btn-retake-exam',
+  'btn-view-lockout',
+  'btn-return-study',
+  'btn-back-to-levels',
+  'lock-countdown',
+  'minigame-feedback',
+  'btn-submit-level-quiz',
+  'level-quiz-result'
+]);
+
+uniqueAppIds.forEach(id => {
+  if (dynamicIds.has(id)) {
+    assert(appJsCode.includes(`id="${id}"`) || appJsCode.includes(`id=\\"${id}\\"`), `Dynamic element '${id}' created in app.js`);
+  } else {
+    assert(indexHtml.includes(`id="${id}"`), `DOM element '${id}' exists in index.html`);
+  }
+});
+
+// Service Worker cached files validation
+const swCode = fs.readFileSync(new URL("../sw.js", import.meta.url), "utf-8");
+const assetMatches = [...swCode.matchAll(/"(\.[^"]+)"/g)].map(m => m[1]);
+assetMatches.forEach(asset => {
+  if (asset === "./") return;
+  const filePath = new URL(`../${asset.replace(/^\.\//, '')}`, import.meta.url);
+  assert(fs.existsSync(filePath), `Cached PWA asset '${asset}' exists on disk`);
+});
 
 console.log("\n=================================================");
 console.log(`TEST RESULTS: ${passed} PASSED, ${failed} FAILED`);

@@ -44,6 +44,10 @@ class GraphLandApp {
     try {
       const saved = localStorage.getItem("graphland_state_v1");
       this.state = saved ? { ...defaultState, ...JSON.parse(saved) } : defaultState;
+      if (!this.state.levelPnrs) this.state.levelPnrs = {};
+      if (this.state.boarded && !this.state.levelPnrs[0]) {
+        this.state.levelPnrs[0] = this.state.initialPnr || this.generateRandomPNR("GL0-JODHPUR");
+      }
     } catch (e) {
       this.state = defaultState;
     }
