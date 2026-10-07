@@ -2,6 +2,10 @@
 
 **An Immersive FAANG-Style Video Game & Masterclass covering Graph Data Structures & Algorithms from Basic to Advanced.**
 
+🌐 **Live Public Game URL**: [https://sarlayash.github.io/A-journey-to-GraphLand-1.0-with-Kapil/](https://sarlayash.github.io/A-journey-to-GraphLand-1.0-with-Kapil/)
+
+📦 **GitHub Repository**: [https://github.com/sarlayash/A-journey-to-GraphLand-1.0-with-Kapil](https://github.com/sarlayash/A-journey-to-GraphLand-1.0-with-Kapil)
+
 ---
 
 ## 🎮 Highlights & Architecture
