@@ -132,6 +132,11 @@ export function generateBadgeCanvas(level, learnerName = "EXPLORER", levelPnr = 
   const dateStr = new Date().toISOString().slice(0, 10);
   ctx.fillText(`AUTHENTICATED ${dateStr} // FAANG ALGORITHM LABS`, cx, 585);
 
+  // Copyright Stamp
+  ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+  ctx.font = "9px monospace";
+  ctx.fillText("© 2026 GRAPHLAND WITH KAPIL • ALL RIGHTS RESERVED", cx, 608);
+
   // Corner rivets
   const cornerR = hexRadius + 15;
   for (let i = 0; i < 6; i++) {

@@ -239,6 +239,24 @@ assetMatches.forEach(asset => {
   assert(fs.existsSync(filePath), `Cached PWA asset '${asset}' exists on disk`);
 });
 
+// TEST GROUP 7: COPYRIGHT & INTELLECTUAL PROPERTY VERIFICATION
+console.log("\n>> 7. Testing Copyright & Intellectual Property Notices...");
+const updatedIndexHtml = fs.readFileSync(new URL("../index.html", import.meta.url), "utf-8");
+assert(updatedIndexHtml.includes("© 2026") && updatedIndexHtml.includes("All Rights Reserved"), "index.html footer contains official © 2026 copyright notice");
+assert(updatedIndexHtml.includes("Mentored & Authored by") && updatedIndexHtml.includes("Kapil"), "index.html attributes authorship to Mentor Kapil");
+
+const updatedBpCode = fs.readFileSync(new URL("../js/canvas/boardingPassGenerator.js", import.meta.url), "utf-8");
+assert(updatedBpCode.includes("© 2026") && updatedBpCode.includes("Kapil"), "Boarding pass canvas includes © 2026 copyright stamp");
+
+const updatedBadgeCode = fs.readFileSync(new URL("../js/canvas/badgeGenerator.js", import.meta.url), "utf-8");
+assert(updatedBadgeCode.includes("© 2026") && updatedBadgeCode.includes("ALL RIGHTS RESERVED"), "Badge generator includes © 2026 copyright stamp");
+
+const updatedCertCode = fs.readFileSync(new URL("../js/canvas/certificateGenerator.js", import.meta.url), "utf-8");
+assert(updatedCertCode.includes("© 2026") && updatedCertCode.includes("All Rights Reserved"), "Certificate generator includes © 2026 copyright notice");
+
+const readmeCode = fs.readFileSync(new URL("../README.md", import.meta.url), "utf-8");
+assert(readmeCode.includes("© 2026") && readmeCode.includes("JIET Group of Institutions"), "README contains official copyright & ownership section");
+
 console.log("\n=================================================");
 console.log(`TEST RESULTS: ${passed} PASSED, ${failed} FAILED`);
 console.log("=================================================");

@@ -235,7 +235,12 @@ export function generateCertificateCanvas(learnerName = "ALGORITHM MASTER", scor
   ctx.fillStyle = "rgba(255, 255, 255, 0.55)";
   ctx.font = "12px monospace";
   const dateStr = new Date().toISOString().slice(0, 10);
-  ctx.fillText(`Issued: ${dateStr}  •  Verification Hash: ${generateSimpleHash(pnr + learnerName)}  •  100% Offline Verifiable`, cx, 1030);
+  ctx.fillText(`Issued: ${dateStr}  •  Verification Hash: ${generateSimpleHash(pnr + learnerName)}  •  100% Offline Verifiable`, cx, 1025);
+
+  // Copyright Notice
+  ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+  ctx.font = "11px monospace";
+  ctx.fillText("© 2026 A Journey to GraphLand 1.0 with Kapil. All Rights Reserved. Mentored by Kapil • JIET Group of Institutions.", cx, 1048);
 
   return canvas;
 }

@@ -197,7 +197,11 @@ export function generateBoardingPassCanvas(learnerName = "ALGORITHM EXPLORER", p
 
   ctx.fillStyle = "rgba(0, 243, 255, 0.7)";
   ctx.font = "10px monospace";
-  ctx.fillText("JIET JODHPUR CAMPUS ➔ 8 EXPEDITION REALMS ➔ FAANG HONORS CERTIFICATION", 50, 482);
+  ctx.fillText("JIET JODHPUR CAMPUS ➔ 8 EXPEDITION REALMS ➔ FAANG HONORS CERTIFICATION", 50, 480);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.45)";
+  ctx.font = "9px monospace";
+  ctx.fillText("© 2026 A Journey to GraphLand 1.0 with Kapil. All Rights Reserved. Mentored by Kapil.", 50, 498);
 
   // RIGHT STUB
   ctx.fillStyle = "#00f3ff";

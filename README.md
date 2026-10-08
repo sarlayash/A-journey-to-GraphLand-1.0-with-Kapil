@@ -82,7 +82,7 @@ Then visit: `http://localhost:3000`
 
 ## 🧪 Deep Automated Testing
 
-Run the automated test suite verifying all 682 test cases across curriculum data, 100 MCQs, quad-language code, PNR mechanics, and PDF streams:
+Run the automated test suite verifying all 794 test cases across curriculum data, 100 MCQs, quad-language code, PNR mechanics, and PDF streams:
 
 ```bash
 node tests/test_suite.mjs
@@ -91,7 +91,19 @@ node tests/test_suite.mjs
 **Results:**
 ```
 =================================================
-TEST RESULTS: 682 PASSED, 0 FAILED
+TEST RESULTS: 794 PASSED, 0 FAILED
 =================================================
 ALL TESTS PASSED WITH 100% SUCCESS!
 ```
+
+---
+
+## 📜 Copyright & Ownership
+
+```
+© 2026 A Journey to GraphLand 1.0 with Kapil. All Rights Reserved.
+Mentored & Authored by: Kapil
+Created for: JIET Group of Institutions (Jodhpur, Rajasthan) & Global Algorithmic Explorers.
+```
+
+All game modules, interactive algorithm canvases, quad-language code solutions (C, C++, Java, Python), 100-MCQ certification assessment engine, and cryptographic PNR badge generators are copyrighted intellectual work.
