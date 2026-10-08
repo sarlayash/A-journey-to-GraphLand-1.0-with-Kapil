@@ -365,6 +365,203 @@ body {
   margin-top: 6px;
 }
 
+/* MENTOR WELCOME NOTE SECTION */
+.mentor-welcome-section {
+  margin-top: 36px;
+}
+
+.mentor-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 215, 0, 0.1);
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 32px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.mentor-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--neon-gold), var(--neon-cyan), var(--neon-purple));
+}
+
+.mentor-image-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mentor-image-frame {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 215, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 320px;
+}
+
+.mentor-image-frame:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.7), 0 0 35px rgba(255, 215, 0, 0.35);
+}
+
+.mentor-portrait-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.mentor-badge-overlay {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  background: rgba(10, 14, 26, 0.88);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 243, 255, 0.35);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--neon-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.mentor-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00ff88;
+  box-shadow: 0 0 8px #00ff88;
+  flex-shrink: 0;
+}
+
+.mentor-content-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mentor-org-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--neon-gold);
+  background: rgba(255, 215, 0, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  padding: 4px 12px;
+  border-radius: 20px;
+  width: fit-content;
+  flex-wrap: wrap;
+}
+
+.mentor-org-badge .org-tagline {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.mentor-heading {
+  font-size: 24px;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.mentor-quote-highlight {
+  margin: 4px 0 8px 0;
+  padding: 12px 20px;
+  border-left: 4px solid var(--neon-gold);
+  background: rgba(255, 215, 0, 0.06);
+  border-radius: 0 8px 8px 0;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--neon-gold);
+  line-height: 1.4;
+}
+
+.mentor-message p {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: #cfd8ea;
+  margin-bottom: 10px;
+}
+
+.mentor-message p strong {
+  color: #ffffff;
+}
+
+.mentor-message p em {
+  color: var(--neon-cyan);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.mentor-signoff {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 6px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.mentor-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mentor-author-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.mentor-author-role {
+  font-size: 12px;
+  color: var(--neon-cyan);
+  font-weight: 600;
+}
+
+.mentor-author-firm {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.mentor-motto-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(0, 243, 255, 0.15));
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--neon-gold);
+  letter-spacing: 0.5px;
+}
+
 /* LEVEL REALM NAVIGATION BAR */
 .level-nav-strip {
   display: flex;
@@ -1561,5 +1758,22 @@ body {
 
   .minigame-options {
     grid-template-columns: 1fr;
+  }
+
+  .mentor-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 22px;
+  }
+
+  .mentor-image-frame {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .mentor-signoff {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 }

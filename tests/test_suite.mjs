@@ -257,6 +257,13 @@ assert(updatedCertCode.includes("© 2026") && updatedCertCode.includes("All Righ
 const readmeCode = fs.readFileSync(new URL("../README.md", import.meta.url), "utf-8");
 assert(readmeCode.includes("© 2026") && readmeCode.includes("JIET Group of Institutions"), "README contains official copyright & ownership section");
 
+// TEST GROUP 8: LANDING PAGE MENTOR NOTE & PORTRAIT VERIFICATION
+console.log("\n>> 8. Testing Landing Page Mentor Welcome Note & Portrait...");
+assert(updatedIndexHtml.includes('src="assets/images/kapil_narula.jpg"'), "index.html references Kapil Narula portrait image");
+assert(updatedIndexHtml.includes("Build more. Teach more. Learn every day."), "index.html features mentor quote 'Build more. Teach more. Learn every day.'");
+assert(updatedIndexHtml.includes("SarlaYash Learning Solutions LLP"), "index.html includes SarlaYash Learning Solutions LLP organization branding");
+assert(updatedIndexHtml.includes("Founder and Chief Ecosystem Architect"), "index.html attributes title 'Founder and Chief Ecosystem Architect'");
+
 console.log("\n=================================================");
 console.log(`TEST RESULTS: ${passed} PASSED, ${failed} FAILED`);
 console.log("=================================================");

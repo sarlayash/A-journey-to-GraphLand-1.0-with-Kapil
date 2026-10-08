@@ -1,7 +1,7 @@
 // Service Worker for GraphLand 1.0 with Kapil
 // Provides 100% Offline Caching for Mobile & Desktop Gameplay
 
-const CACHE_NAME = "graphland-v1-cache";
+const CACHE_NAME = "graphland-v2-cache";
 const ASSETS_TO_CACHE = [
   "./",
   "./index.html",
@@ -15,6 +15,7 @@ const ASSETS_TO_CACHE = [
   "./js/canvas/boardingPassGenerator.js",
   "./js/canvas/badgeGenerator.js",
   "./js/canvas/certificateGenerator.js",
+  "./assets/images/kapil_narula.jpg",
   "./icons/icon-192.svg",
   "./icons/icon-512.svg"
 ];
